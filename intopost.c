@@ -75,33 +75,32 @@ void main()
 			{
 				push(a);
 				push(*ptr);
-				//printf("2");
+			//	printf("2");
 			}
 			else
-			{
-				for(j=0;j<=top;j++)
+			{	arr[i]=a;
+				i++;
+				while(top!=-1)
 				{
-					arr[i]=a;
-					i++;
 					arr[i]=pop();
 					i++;
-					//printf("3");
+			//		printf("3");
 				}
 				push(*ptr);
 			}
 		}
 		ptr++;
 	}
+	while(top!=-1)
+	{
+		a=pop();
+		arr[i]=a;
+		i++;
+		//printf("4");
+	}
+	
 	for(i=0;arr[i]!='\0';i++)
 	{
 		printf("%c",arr[i]);
 	}
-}
-				
-			
-			
-			
-			
-			
-			
-				
+}	

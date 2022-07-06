@@ -1,44 +1,24 @@
-/*Apply stack to perform Infix to postfix conversion */
+/* Apply stack to perform infix to postfix */
 
 #include<stdio.h>
 #include<ctype.h>
-#define n 10
+#define n 50
 
-int intop=-1;
-int pstop=-1;
+int top=-1;
+int stack[n];
 
-char infix[n],postfix[n];
-
-void findtop()
-{
-	return infix[intop];
+void push(char val)
+{	top++;
+	stack[top]=val;
 }
 
-
-void push(int val)
-{
-	pstop++;
-	postfix[pstop]=val;
-}
-
-void pop()
-{
-	infix[intop]=-1;
-	intop--;
-}
-
-
-int isoperator(char symb)
-{
-	if(symb=='+' || symb=='*' || symb=='/' || symb=='-')
-	{
-		return 1;
-	}
+char pop()
+{	
+	char x[1];
+	x[0]=stack[top];
+	top--;
+	return x[0];
 	
-	else
-	{
-		return 0;
-	}
 }
 
 int precedence(char symb)
@@ -72,48 +52,56 @@ int precedence(char symb)
 	}
 }
 
-void infixtopostfix()
+void main()
 {
-	int i=0,j=0;
-	char x, item;
-	item=infix[i];
-	while(item!='\0')
-	{	
-		if(isdigit(item)||isalpha(item))
+	char exp[100],arr[100];
+	char *ptr,a,b;
+	int i=0,j;
+	printf("Enter the expression ");
+	scanf("%s",exp);
+	ptr=exp;
+	while(*ptr!='\0')
+	{
+		if(isdigit(*ptr) || isalpha(*ptr))
 		{
-			postfix[j]=item;
-			j++;
+			arr[i]=*ptr;
+			i++;
 		}
-		
-		else if (isoperator(item))
+		else
 		{
-			x=findtop();
-			while(isoperator() && precendence(item))
+			a=pop();
+			//printf("1");
+			if(precedence(*ptr)>=precedence(a))
 			{
-				x=pop();
-				postfix[j]=x;
-				j++;
-				x=findtop();
+				push(a);
+				push(*ptr);
+				//printf("2");
+			}
+			else
+			{
+				for(j=0;j<=top;j++)
+				{
+					arr[i]=a;
+					i++;
+					arr[i]=pop();
+					i++;
+					//printf("3");
+				}
+				push(*ptr);
 			}
 		}
-		i++;
+		ptr++;
 	}
-	postfix[i]='\0';
+	for(i=0;arr[i]!='\0';i++)
+	{
+		printf("%c",arr[i]);
+	}
 }
-
-void main
-{
-	printf("\n ENTER INFIX EXP :");
-	scanf(
-	
-	
-	
 				
-		
-		
-		
-		
-		
-		
-		
-
+			
+			
+			
+			
+			
+			
+				

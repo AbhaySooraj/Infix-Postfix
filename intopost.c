@@ -70,12 +70,10 @@ void main()
 		else
 		{
 			a=pop();
-			//printf("1");
 			if(precedence(*ptr)>=precedence(a))
 			{
 				push(a);
 				push(*ptr);
-			//	printf("2");
 			}
 			else
 			{	arr[i]=a;
@@ -84,7 +82,6 @@ void main()
 				{
 					arr[i]=pop();
 					i++;
-			//		printf("3");
 				}
 				push(*ptr);
 			}
@@ -96,7 +93,6 @@ void main()
 		a=pop();
 		arr[i]=a;
 		i++;
-		//printf("4");
 	}
 	
 	for(i=0;arr[i]!='\0';i++)
